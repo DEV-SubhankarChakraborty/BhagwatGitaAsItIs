@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="theme-color" content="#0d0a06">
+<title>॥ भगवद्गीता ॥</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Chapters">&#9776;</button>
+    <div class="header-title">॥ भगवद्गीता ॥</div>
+  </div>
+  <div class="header-right">
+    <button class="icon-btn" onclick="openSearch()">&#9906;</button>
+    <button class="icon-btn" onclick="openJump()">&#8631;</button>
+    <div class="day-badge" id="dayBadge">Day 1</div>
+  </div>
+</header>
+
+<div class="backdrop" id="backdrop" onclick="closeSidebar()"></div>
+
+<div class="app">
+  <aside id="sidebar">
+    <div class="sidebar-head">18 Chapters &middot; 701 Verses</div>
+    <div id="chapterList"></div>
+  </aside>
+
+  <main>
+    <div class="ch-header" id="chapterHeader"></div>
+    <div class="verse-card" id="verseCard"></div>
+  </main>
+</div>
+
+<div class="nav-bar">
+  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&#8592; Prev</button>
+  <div class="nav-center">
+    <div class="verse-counter" id="verseCounter"></div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+  <button class="nav-btn" id="nextBtn" onclick="navigate(1)">Next &#8594;</button>
+</div>
+
+<!-- SEARCH -->
+<div class="search-overlay" id="searchOverlay" onclick="bgCloseSearch(event)">
+  <div class="search-box">
+    <div class="search-input-row">
+      <span style="color:var(--muted);font-size:18px">&#9906;</span>
+      <input type="text" id="searchInput" placeholder="Search verses or keywords…" oninput="doSearch(this.value)" autocomplete="off" spellcheck="false">
+      <button class="search-close" onclick="closeSearch()">&#10005;</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<!-- JUMP -->
+<div class="modal-overlay" id="jumpModal" onclick="bgCloseJump(event)">
+  <div class="modal-box">
+    <h3>Jump to Verse</h3>
+    <select id="jumpChapter" onchange="updateJumpVerses()"></select>
+    <select id="jumpVerse"></select>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeJump()">Cancel</button>
+      <button class="btn-go" onclick="doJump()">Go &#8594;</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
